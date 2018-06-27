@@ -1,0 +1,24 @@
+body{
+    background-color: #002B5C;
+    color: #F9A01B;
+    font-family: arial;
+}
+
+h1{
+    color: #F9A01B;
+    font-family: fantasy;
+}
+
+p{
+    color: white;
+    font-family: arial;
+}
+
+a{
+    color: #F9A01B;
+    text-decoration: none;
+}
+
+span{
+    color: #F9A01B;
+}

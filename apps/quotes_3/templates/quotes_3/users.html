@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Users</title>
+    {% load staticfiles %}
+     <!-- The line above tells Django to be ready to listen for static files -->
+     <link rel="stylesheet" href="{% static 'css/quotes_3.css' %}" media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+      <a href="/quotes">Dashboard</a> <a href="/">LOG OUT</a>
+      <h3>Posts by {{creator}}</h3>
+      <h3>Count: {{counts}}</h3>
+      {% for quote in allquotes %}
+        <p><span>{{quote.quoteby}}</span>: {{quote.quote}}</p>
+      {% endfor %}
+  </body>
+</html>

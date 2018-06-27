@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quotes</title>
+    {% load staticfiles %}
+     <!-- The line above tells Django to be ready to listen for static files -->
+     <link rel="stylesheet" href="{% static 'css/quotes_3.css' %}" media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+      <h1>Welcome</h1>
+      {% if messages %}
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+      {% endif %}
+      <h1>Register</h1>
+      <form action="/register" method="post">
+        {% csrf_token %}
+      <p>Name: <input type="text" name="name"></p>
+      <p>Alias: <input type="text" name="alias"></p>
+      <p>Email: <input type="text" name="email"></p>
+      <p>Password: <input type="password" name="password"></p>
+      <p>PW Confirm: <input type="password" name="pw_confirm"></p>
+      <p>Birthday: <input type="date" name="birthday"></p>
+      <input type="submit" name="submit">
+      </form>
+      <h1>Login</h1>
+      <form action="/login" method="post">
+        {% csrf_token %}
+      <p>Email: <input type="text" name="email"></p>
+      <p>Password: <input type="password" name="password"></p>
+      <input type="submit" name="submit">
+      </form>
+  </body>
+</html>

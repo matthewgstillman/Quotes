@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quotes</title>
+    {% load staticfiles %}
+     <!-- The line above tells Django to be ready to listen for static files -->
+     <link rel="stylesheet" href="{% static 'css/quotes_3.css' %}" media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+      <h1>Welcome, {{request.session.name}}</h1>
+      {% if messages %}
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+      {% endif %}
+      <h2>Quotable Quotes</h2>
+      {% for quote in quotes %}
+      <p><span>{{quote.quoteby}}</span> - "{{quote.quote}}"</p>
+      <form action="/add_fave/{{quote.id}}" method="post">
+          {% csrf_token %}
+          <p>Posted by <a href="users/{{quote.creator.id}}">{{quote.creator.name}}</a></p>
+          <input type="submit" name="submit" value="Add To My List">
+      </form>
+    {% endfor %}
+    <h1>Your Favorites</h1>
+    {% for fave in favoritelist %}
+      <p><span>{{fave.quoteby}}</span> - "{{fave.quote}}"</p>
+      <form action="/delete_fave/{{quote.id}}" method="post">
+          {% csrf_token %}
+          <p>Posted by <a href="users/{{quote.creator.id}}">{{fave.creator.name}}</a></p>
+          <input type="submit" name="submit" value="Delete From My List">
+      </form>
+    {% endfor %}
+    <h1>Contribute a Quote</h1>
+    <form action="/add_quote" method="post">
+    {% csrf_token %}
+          <p>Quoted By: <input type="text" name="quoteby"></p>
+          <p>Message: <textarea name="quote" rows="8" cols="150"></textarea></p>
+          <input type="submit" name="submit" value="Submit">
+      </form><br>
+      <a href="/">LOG OUT</a>
+  </body>
+</html>
